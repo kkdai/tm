@@ -18,6 +18,7 @@ func (t *Tape) moveRight() {
 //Run tape head move and modify value
 func (t *Tape) DoOption(modifiedSym string, directToRight bool) {
 	if t.Head < len(t.Symbol) {
+		//fmt.Println("index:", t.Head)
 		t.Symbol[t.Head] = modifiedSym
 	} else { //Append new Blank if goes to Right
 		t.Symbol = append(t.Symbol, "B")
@@ -32,7 +33,7 @@ func (t *Tape) DoOption(modifiedSym string, directToRight bool) {
 
 //Return if the tape is run to the end
 func (t *Tape) EndInput() bool {
-	return t.Head == len(t.Symbol)-1
+	return t.Head == len(t.Symbol) //when head exceed slice size, it is end
 }
 
 //Read one symbol from tape

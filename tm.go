@@ -31,14 +31,14 @@ type TM struct {
 	FinalStates  map[string]bool
 	Inputs       map[string]bool
 	Configs      map[ConfigIn]ConfigOut
-	currentState string
+	CurrentState string
 }
 
 // Input turing machine state
 func (t *TM) InputState(state string, isFinal bool) {
 	//First input state will be init state
-	if t.currentState == "" {
-		t.currentState = state
+	if t.CurrentState == "" {
+		t.CurrentState = state
 	}
 
 	//Add newState
@@ -77,16 +77,16 @@ func (t *TM) InputConfig(srcState string, input string, modifiedVal string, dstS
 // Step will read a input and run single step, return if it is accept
 func (t *TM) Step() bool {
 	input := t.Input.ReadSymbol()
-	inConfig := ConfigIn{SrcState: t.currentState, Input: input}
+	inConfig := ConfigIn{SrcState: t.CurrentState, Input: input}
 
 	if newOut, exist := t.Configs[inConfig]; !exist {
 		return false
 	} else {
 		t.Input.DoOption(newOut.ModifiedVal, newOut.TapeMove == MoveRight)
-		t.currentState = newOut.DstState
+		t.CurrentState = newOut.DstState
 	}
 
-	if _, exist := t.FinalStates[t.currentState]; exist {
+	if _, exist := t.FinalStates[t.CurrentState]; exist {
 		return true
 	}
 
@@ -97,8 +97,12 @@ func (t *TM) Step() bool {
 func (t *TM) Run() bool {
 	var latestResult bool
 	for !t.Input.EndInput() {
-
+		//fmt.Println("run  index=", t.Input.Head)
 		latestResult = t.Step()
 	}
 	return latestResult
+}
+
+func (t *TM) ExportTape() []string {
+	return t.Input.Symbol
 }
