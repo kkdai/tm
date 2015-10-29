@@ -15,6 +15,7 @@ func (t *Tape) moveRight() {
 	t.Head++
 }
 
+//Run tape head move and modify value
 func (t *Tape) DoOption(modifiedSym string, directToRight bool) {
 	if t.Head < len(t.Symbol) {
 		t.Symbol[t.Head] = modifiedSym
@@ -29,11 +30,17 @@ func (t *Tape) DoOption(modifiedSym string, directToRight bool) {
 	}
 }
 
+//Return if the tape is run to the end
+func (t *Tape) EndInput() bool {
+	return t.Head == len(t.Symbol)-1
+}
+
+//Read one symbol from tape
 func (t *Tape) ReadSymbol() string {
 	return t.Symbol[t.Head]
 }
 
-func NewTape(Symbols ...string) *Tape {
+func NewTape(Symbols []string) *Tape {
 	newT := new(Tape)
 	newT.Symbol = Symbols
 	return newT
