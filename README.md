@@ -71,6 +71,9 @@ Inspired By
 =============
 
 - [Coursera: Automata](https://class.coursera.org/automata-004/)
+- [https://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/turing-machine/four.html](https://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/turing-machine/four.html)
+- [Wiki: 圖靈機](https://zh.wikipedia.org/wiki/%E5%9B%BE%E7%81%B5%E6%9C%BA)
+- [https://en.wikipedia.org/wiki/Turing_machine_examples](https://en.wikipedia.org/wiki/Turing_machine_examples)
 
 
 Project52
