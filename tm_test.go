@@ -7,6 +7,7 @@ import (
 	. "github.com/kkdai/tm"
 )
 
+// Simple TM
 func TestBasicTM(t *testing.T) {
 	nTM := NewTM()
 	nTM.InputState("0", false)
@@ -27,7 +28,7 @@ func TestBasicTM(t *testing.T) {
 	}
 }
 
-//Rewrite all tape 0 to 1
+// A TM to rewrite all tape 0 to 1
 func TestModifyTM(t *testing.T) {
 	nTM := NewTM()
 	nTM.InputState("0", false)

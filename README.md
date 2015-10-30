@@ -3,10 +3,12 @@ TM: Turing Machine implement in Golang
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kkdai/tm/master/LICENSE)  [![GoDoc](https://godoc.org/github.com/kkdai/cyk?status.svg)](https://godoc.org/github.com/kkdai/tm)  [![Build Status](https://travis-ci.org/kkdai/tm.svg?branch=master)](https://travis-ci.org/kkdai/tm)
 
+![](TM-Image.png)
 
 What is this Turing Machine
 =============
 
+A Turing machine is an abstract "machine" that manipulates symbols on a strip of tape according to a table of rules; to be more exact, it is a mathematical model that defines such a device. Despite the model's simplicity, given any computer algorithm, a Turing machine can be constructed that is capable of simulating that algorithm's logic. (cited from [wiki](https://en.wikipedia.org/wiki/Turing_machine))
 
 
  
@@ -24,7 +26,7 @@ Install
 Usage
 ---------------
 
-Following is sample code to implement a epsilon-NFA automata diagram as follow:
+Following is sample code to implement a TM to rewrite all tape 0 to 1 as follow:
 
 
 ```go
@@ -36,7 +38,32 @@ import (
 )
 
 func main() {
-}
+	nTM := NewTM()
+	
+	//Input State and declare if it is final state
+	nTM.InputState("0", false)
+	nTM.InputState("1", true)
+
+	//Input config
+	// InputConfig parameter as follow:
+	//	- SourceState, 
+	// - Input
+	// - Modified Value
+	// - DestinationState 
+	// - Tape Head Move Direction
+	nTM.InputConfig("0", "1", "1", "1", MoveRight)
+	nTM.InputConfig("0", "0", "1", "0", MoveLeft)
+	nTM.InputConfig("1", "0", "1", "0", MoveLeft)
+	nTM.InputConfig("1", "1", "1", "1", MoveRight)
+
+	//Input tape data
+	nTM.InputTape("0", "0", "1", "1", "0", "0", "0")
+
+	//Run TM to the finish (if exist)
+	nTM.Run()
+	
+	fmt.Println("New Tape:=", nTM.ExportTape())
+	}
 
 ```
 

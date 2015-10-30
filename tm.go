@@ -34,7 +34,7 @@ type TM struct {
 	CurrentState string
 }
 
-// Input turing machine state
+// Input State and declare if it is final state
 func (t *TM) InputState(state string, isFinal bool) {
 	//First input state will be init state
 	if t.CurrentState == "" {
@@ -54,7 +54,13 @@ func (t *TM) InputTape(tracks ...string) {
 	t.Input = newTape
 }
 
-// Input turing machine config
+//Input config
+// InputConfig parameter as follow:
+// - SourceState,
+// - Input
+// - Modified Value
+// - DestinationState
+// - Tape Head Move Direction
 func (t *TM) InputConfig(srcState string, input string, modifiedVal string, dstState string, tapeMove int) {
 	//Check state
 	if _, exist := t.States[srcState]; !exist {

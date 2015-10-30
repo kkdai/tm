@@ -17,12 +17,12 @@ func (t *Tape) moveRight() {
 
 //Run tape head move and modify value
 func (t *Tape) DoOption(modifiedSym string, directToRight bool) {
-	if t.Head < len(t.Symbol) {
-		//fmt.Println("index:", t.Head)
-		t.Symbol[t.Head] = modifiedSym
-	} else { //Append new Blank if goes to Right
-		t.Symbol = append(t.Symbol, "B")
+	if t.Head >= len(t.Symbol) {
+		return
 	}
+
+	//fmt.Println("index:", t.Head)
+	t.Symbol[t.Head] = modifiedSym
 
 	if directToRight {
 		t.moveRight()
