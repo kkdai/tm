@@ -34,7 +34,8 @@ Following is sample code to implement a TM to rewrite all tape 0 to 1 as follow:
 package main
 
 import (
-    "github.com/kkdai/tm"
+    "fmt"
+    . "github.com/kkdai/tm"
 )
 
 func main() {
